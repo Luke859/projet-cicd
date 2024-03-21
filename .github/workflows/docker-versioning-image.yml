@@ -47,8 +47,8 @@ jobs:
       - name: Build and Push Image
         run: |
           if [ -n "$VERSION_BRANCHE" ]; then
-            docker build -t ${{ matrix.image }}:$VERSION_BRANCHE ${{ matrix.context }}
-            docker push ${{ matrix.image }}:$VERSION_BRANCHE
+            docker build -t "${{ matrix.image }}:$VERSION_BRANCHE" ${{ matrix.context }}
+            docker push "${{ matrix.image }}:$VERSION_BRANCHE"
           else
             echo "No version number found in branch name."
           fi
