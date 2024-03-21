@@ -12,6 +12,8 @@ jobs:
   push_to_registry:
     name: Push Docker image to Docker Hub
     runs-on: ubuntu-latest
+    env:
+      VERSION_BRANCHE: ""
     strategy:
       fail-fast: false
       matrix:
@@ -36,18 +38,22 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
-      - name: Extract branch versions
+      - name: Extract version number
         run: |
-          BRANCH_NAME=${GITHUB_REF#refs/heads/}
-          if [[ "$BRANCH_NAME" =~ ^v\d+\.\d+\.\d+$ ]]; then
-            echo "Version extracted from branch name: $BRANCH_NAME"
+          # Récupérer le nom de la branche à partir de GITHUB_REF
+          VERSION_BRANCHE=$(echo "${GITHUB_REF#refs/heads/}")
+
+          # Extraire le numéro de version avec une regex
+          if [[ "$VERSION_BRANCHE" =~ v([0-9]+\.[0-9]+\.[0-9]+) ]]; then
+            VERSION_NUMBER="${BASH_REMATCH[1]}"
+            echo "Version number extracted from branch name: $VERSION_NUMBER"
           else
-            echo "No version found in branch name."
+            echo "No version number found in branch name."
             exit 1
           fi
 
 
       - name: Build and Push Image
         run: |
-          docker build -t ${{ matrix.image }}:$BRANCH_NAME ${{ matrix.context }}
-          docker push ${{ matrix.image }}:$BRANCH_NAME
+          docker build -t ${{ matrix.image }}:$VERSION_BRANCHE ${{ matrix.context }}
+          docker push ${{ matrix.image }}:$VERSION_BRANCHE
