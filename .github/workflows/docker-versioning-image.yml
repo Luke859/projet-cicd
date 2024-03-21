@@ -42,9 +42,13 @@ jobs:
         run: |
           # Récupérer le nom de la branche à partir de GITHUB_REF
           VERSION_BRANCHE=$(echo ${{ github.ref }} | grep -oE '[1-9][0-9]*.[0-9]+.[0-9]+')
-          echo $VERSION_BRANCHE
+          echo "::set-env name=VERSION_FROM_BRANCH::$VERSION_FROM_BRANCH"
 
       - name: Build and Push Image
         run: |
-          echo $VERSION_BRANCHE
-          
+          if [ -n "$VERSION_BRANCHE" ]; then
+            docker build -t "${{ matrix.image }}:$VERSION_BRANCHE" ${{ matrix.context }}
+            docker push "${{ matrix.image }}:$VERSION_BRANCHE"
+          else
+            echo "No version number found in branch name."
+          fi
