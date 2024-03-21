@@ -4,8 +4,6 @@ on:
   push:
     branches:
       - "main"
-      - "dev_luke"
-      - "dev_kevin"
 
 jobs:
   push_to_registry:
