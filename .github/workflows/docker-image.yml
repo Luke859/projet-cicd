@@ -39,13 +39,3 @@ jobs:
         run: |
           docker build -t ${{ matrix.image }}:latest ${{ matrix.context }}
           docker push ${{ matrix.image }}:latest
-
-      # - name: Build and Push Backend Node Docker Image
-      #   run: |
-      #     docker build -t guyodokevin/backendorder-node-cicd:latest order-service
-      #     docker push guyodokevin/backendorder-node-cicd:latest
-
-      # - name: Build and Push BackEnd Python Image
-      #   run: |
-      #     docker build -t guyodokevin/backenduser-python-cicd:latest user-service
-      #     docker push guyodokevin/backenduser-python-cicd:latest
