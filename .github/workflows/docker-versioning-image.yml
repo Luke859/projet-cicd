@@ -38,7 +38,7 @@ jobs:
 
       - name: Extract branch versions
         run: |
-          BRANCH_NAME=$(echo $GITHUB_REF | grep -oE '^v\d+\.\d+\.\d+$')
+          BRANCH_NAME=$(echo ${{ github.ref }} | grep -oE 'v\d+\.\d+\.\d+')
           echo "Version extracted from branch name: $BRANCH_NAME"
 
       - name: Build and Push Image
