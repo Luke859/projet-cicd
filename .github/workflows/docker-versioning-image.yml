@@ -41,17 +41,7 @@ jobs:
       - name: Extract version number
         run: |
           # Récupérer le nom de la branche à partir de GITHUB_REF
-          VERSION_BRANCHE=$(echo "${GITHUB_REF#refs/heads/}")
-
-          # Extraire le numéro de version avec une regex
-          if [[ "$VERSION_BRANCHE" =~ v([0-9]+\.[0-9]+\.[0-9]+) ]]; then
-            VERSION_NUMBER="${BASH_REMATCH[1]}"
-            echo "Version number extracted from branch name: $VERSION_NUMBER"
-          else
-            echo "No version number found in branch name."
-            exit 1
-          fi
-
+          VERSION_BRANCHE=$(echo ${{ github.ref }} | grep -oE '[1-9][0-9]*.[0-9]+.[0-9]+')
 
       - name: Build and Push Image
         run: |
