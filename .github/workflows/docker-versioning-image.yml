@@ -36,7 +36,12 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
+      - name: Extract branch versions
+            run: |
+              BRANCH_NAME=$(echo $GITHUB_REF | grep -o -E 'v\d+\.\d+\.\d+')
+              echo "Version extracted from branch name: $BRANCH_NAME"
+
       - name: Build and Push Image
         run: |
-          docker build -t ${{ matrix.image }}:${{ github.ref }} ${{ matrix.context }}
-          docker push ${{ matrix.image }}:${{ github.ref }}
+          docker build -t ${{ matrix.image }}:$BRANCH_NAME ${{ matrix.context }}
+          docker push ${{ matrix.image }}:$BRANCH_NAME
