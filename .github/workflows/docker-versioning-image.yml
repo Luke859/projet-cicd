@@ -37,9 +37,9 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Extract branch versions
-            run: |
-              BRANCH_NAME=$(echo $GITHUB_REF | grep -o -E 'v\d+\.\d+\.\d+')
-              echo "Version extracted from branch name: $BRANCH_NAME"
+        run: |
+          BRANCH_NAME=$(echo $GITHUB_REF | grep -o -E 'v\d+\.\d+\.\d+')
+          echo "Version extracted from branch name: $BRANCH_NAME"
 
       - name: Build and Push Image
         run: |
