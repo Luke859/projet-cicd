@@ -19,9 +19,9 @@ jobs:
           - order-service
           - user-service
         image:
-          - ${{ secrets.DOCKER_USERNAME }}/frontend-react-cicd
-          - ${{ secrets.DOCKER_USERNAME }}/backendorder-node-cicd
-          - ${{ secrets.DOCKER_USERNAME }}/backenduser-python-cicd
+          - guyodokevin/frontend-react-cicd
+          - guyodokevin/backendorder-node-cicd
+          - guyodokevin/backenduser-python-cicd
     steps:
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
