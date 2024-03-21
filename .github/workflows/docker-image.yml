@@ -15,11 +15,11 @@ jobs:
     strategy:
       matrix:
         include:
-          - context: ../../front-end-react
+          - context: front-end-react
             image: guyodokevin/frontend-react-cicd
-          - context: ../../order-service
+          - context: order-service
             image: guyodokevin/backendorder-node-cicd
-          - context: ../../user-service
+          - context: user-service
             image: guyodokevin/backenduser-python-cicd
 
     steps:
@@ -34,8 +34,8 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Build and push image 
-        uses: docker/build-push-action@v5
+        uses: docker/build-push-action@v2
         with:
-          context: ${{ matrix.context }}
+          context: ./${{ matrix.context }}
           push: true
           tags: ${{ matrix.image }}:latest
