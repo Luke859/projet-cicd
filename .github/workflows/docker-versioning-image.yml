@@ -38,6 +38,5 @@ jobs:
 
       - name: Build and Push Image
         run: |
-          docker build -t ${{ matrix.image }}:latest -t ${{ matrix.image }}:${{ github.ref }} ${{ matrix.context }}
-          docker push ${{ matrix.image }}:latest
+          docker build -t ${{ matrix.image }}:${{ github.ref }} ${{ matrix.context }}
           docker push ${{ matrix.image }}:${{ github.ref }}
