@@ -14,14 +14,14 @@ jobs:
 
     strategy:
       matrix:
-        context:
-          - ./front-end-react
-          - ./order-service
-          - ./user-service
-        image:
-          - guyodokevin/frontend-react-cicd
-          - guyodokevin/backendorder-node-cicd
-          - guyodokevin/backenduser-python-cicd
+        include:
+          - context: front-end-react
+            image: guyodokevin/frontend-react-cicd
+          - context: order-service
+            image: guyodokevin/backendorder-node-cicd
+          - context: user-service
+            image: guyodokevin/backenduser-python-cicd
+
     steps:
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
