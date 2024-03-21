@@ -23,6 +23,8 @@ jobs:
             image: guyodokevin/backenduser-python-cicd
 
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
       - name: Set up Docker Buildx
@@ -33,24 +35,24 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
-      - name: Build and push to Docker Hub
-        uses: docker/build-push-action@v5
-        with:
-          context: ./${{ matrix.context }}
-          push: true
-          tags: ${{ matrix.image }}:${{ github.sha }}
+      # - name: Build and push to Docker Hub
+      #   uses: docker/build-push-action@v5
+      #   with:
+      #     context: ./${{ matrix.context }}
+      #     push: true
+      #     tags: ${{ matrix.image }}:${{ github.sha }}
 
-      # - name: Build and Push Frontend React Docker Image
-      #   run: |
-      #     docker build -t guyodokevin/frontend-react-cicd:latest ./front-end-react
-      #     docker push guyodokevin/frontend-react-cicd:latest
+      - name: Build and Push Frontend React Docker Image
+        run: |
+          docker build -t guyodokevin/frontend-react-cicd:latest ./front-end-react/Dockerfile
+          docker push guyodokevin/frontend-react-cicd:latest
 
-      # - name: Build and Push Backend Node Docker Image
-      #   run: |
-      #     docker build -t guyodokevin/backendorder-node-cicd:latest ./order-service
-      #     docker push guyodokevin/backendorder-node-cicd:latest
+      - name: Build and Push Backend Node Docker Image
+        run: |
+          docker build -t guyodokevin/backendorder-node-cicd:latest ./order-service/Dockerfile
+          docker push guyodokevin/backendorder-node-cicd:latest
 
-      # - name: Build and Push BackEnd Python Image
-      #   run: |
-      #     docker build -t guyodokevin/backenduser-python-cicd:latest ./user-service
-      #     docker push guyodokevin/backenduser-python-cicd:latest
+      - name: Build and Push BackEnd Python Image
+        run: |
+          docker build -t guyodokevin/backenduser-python-cicd:latest ./user-service/Dockerfile
+          docker push guyodokevin/backenduser-python-cicd:latest
