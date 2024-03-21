@@ -12,16 +12,6 @@ jobs:
     name: Push Docker image to Docker Hub
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        include:
-          - context: front-end-react
-            image: guyodokevin/frontend-react-cicd
-          - context: order-service
-            image: guyodokevin/backendorder-node-cicd
-          - context: user-service
-            image: guyodokevin/backenduser-python-cicd
-
     steps:
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
@@ -34,16 +24,16 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Build and Push Frontend React Docker Image
-          run: |
-            docker build -t guyodokevin/frontend-react-cicd:latest $GITHUB_WORKSPACE/projet-cicd/front-end-react/
-            docker push guyodokevin/frontend-react-cicd:latest
+        run: |
+          docker build -t guyodokevin/frontend-react-cicd:latest $GITHUB_WORKSPACE/projet-cicd/front-end-react/
+          docker push guyodokevin/frontend-react-cicd:latest
 
       - name: Build and Push Backend Node Docker Image
-          run: |
-            docker build -t guyodokevin/backendorder-node-cicd:latest $GITHUB_WORKSPACE/projet-cicd/order-service/
-            docker push guyodokevin/backendorder-node-cicd:latest
+        run: |
+          docker build -t guyodokevin/backendorder-node-cicd:latest $GITHUB_WORKSPACE/projet-cicd/order-service/
+          docker push guyodokevin/backendorder-node-cicd:latest
 
       - name: Build and Push BackEnd Python Image
-          run: |
-            docker build -t guyodokevin/backenduser-python-cicd:latest $GITHUB_WORKSPACE/projet-cicd/user-service/
-            docker push guyodokevin/backenduser-python-cicd:latest
+        run: |
+          docker build -t guyodokevin/backenduser-python-cicd:latest $GITHUB_WORKSPACE/projet-cicd/user-service/
+          docker push guyodokevin/backenduser-python-cicd:latest
