@@ -46,5 +46,5 @@ jobs:
 
       - name: Build and Push Image
         run: |
-          docker build -t ${{ matrix.image }}:$VERSION_BRANCHE ${{ matrix.context }}
-          docker push ${{ matrix.image }}:$VERSION_BRANCHE
+          docker build -t "${{ matrix.image }}:$VERSION_BRANCHE" "${{ matrix.context }}"
+          docker push "${{ matrix.image }}:$VERSION_BRANCHE"
