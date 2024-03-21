@@ -15,11 +15,11 @@ jobs:
     strategy:
       matrix:
         include:
-          - context: ../front-end-react
+          - context: ../../front-end-react
             image: guyodokevin/frontend-react-cicd
-          - context: ../order-service
+          - context: ../../order-service
             image: guyodokevin/backendorder-node-cicd
-          - context: ../user-service
+          - context: ../../user-service
             image: guyodokevin/backenduser-python-cicd
 
     steps:
