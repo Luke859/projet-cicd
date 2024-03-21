@@ -3,10 +3,10 @@ name: Publish Docker image
 on:
   push:
     branches:
-      - ^v\d+\.\d+\.\d+$
+      - v\d+\.\d+\.\d+
   create:
     branches:
-      - ^v\d+\.\d+\.\d+$
+      - v\d+\.\d+\.\d+
 
 jobs:
   push_to_registry:
@@ -40,7 +40,7 @@ jobs:
 
       - name: Extract version number
         run: |
-          # Récupérer le nom de la branche à partir de GITHUB_REF
+          # Get version branch value from GITHUB_REF
           echo "VERSION_BRANCHE=$(echo ${{ github.ref }} | grep -oE '[1-9][0-9]*.[0-9]+.[0-9]+')" >> $GITHUB_ENV
 
       - name: Build and Push Image
