@@ -25,20 +25,20 @@ jobs:
       - name: Build and push image frontend react
         uses: docker/build-push-action@v5
         with:
-          context: ./front-end-react
+          context: ../../front-end-react
           push: true
           tags: guyodokevin/frontend-react-cicd:latest
 
       - name: Build and push image backend node
         uses: docker/build-push-action@v5
         with:
-          context: ./order-service
+          context: ../../order-service
           push: true
           tags: guyodokevin/backendorder-node-cicd:latest
 
       - name: Build and push image backend python
         uses: docker/build-push-action@v5
         with:
-          context: ./user-service
+          context: ../../user-service
           push: true
           tags: guyodokevin/backenduser-python-cicd:latest
