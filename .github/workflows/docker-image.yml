@@ -25,15 +25,15 @@ jobs:
 
       - name: Build and Push Frontend React Docker Image
         run: |
-          docker build -t guyodokevin/frontend-react-cicd:latest $GITHUB_WORKSPACE/front-end-react/
+          docker build -t guyodokevin/frontend-react-cicd:latest $GITHUB_WORKSPACE/front-end-react
           docker push guyodokevin/frontend-react-cicd:latest
 
       - name: Build and Push Backend Node Docker Image
         run: |
-          docker build -t guyodokevin/backendorder-node-cicd:latest $GITHUB_WORKSPACE/order-service/
+          docker build -t guyodokevin/backendorder-node-cicd:latest $GITHUB_WORKSPACE/order-service
           docker push guyodokevin/backendorder-node-cicd:latest
 
       - name: Build and Push BackEnd Python Image
         run: |
-          docker build -t guyodokevin/backenduser-python-cicd:latest $GITHUB_WORKSPACE/user-service/
+          docker build -t guyodokevin/backenduser-python-cicd:latest $GITHUB_WORKSPACE/user-service
           docker push guyodokevin/backenduser-python-cicd:latest
