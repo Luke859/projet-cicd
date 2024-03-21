@@ -41,7 +41,8 @@ jobs:
       - name: Extract version number
         run: |
           # Récupérer le nom de la branche à partir de GITHUB_REF
-          VERSION_BRANCHE=$(echo ${{ github.ref }} | grep -oE 'v\d+\.\d+\.\d+')
+          VERSION_BRANCHE=$(echo ${{ github.ref }} | grep -oE '[1-9][0-9]*.[0-9]+.[0-9]+')
+          echo $VERSION_BRANCHE
 
       - name: Build and Push Image
         run: |
