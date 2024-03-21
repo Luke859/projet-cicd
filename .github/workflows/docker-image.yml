@@ -15,9 +15,9 @@ jobs:
     strategy:
       matrix:
         context:
-          - front-end-react
-          - order-service
-          - user-service
+          - ./front-end-react
+          - ./order-service
+          - ./user-service
         image:
           - guyodokevin/frontend-react-cicd
           - guyodokevin/backendorder-node-cicd
