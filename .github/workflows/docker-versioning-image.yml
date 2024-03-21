@@ -38,8 +38,13 @@ jobs:
 
       - name: Extract branch versions
         run: |
-          BRANCH_NAME=$(echo ${{ github.ref }} | sed 's/refs\/heads\///' | grep -oE 'v\d+\.\d+\.\d+')
-          echo "Version extracted from branch name: $BRANCH_NAME"
+          BRANCH_NAME=${GITHUB_REF#refs/heads/}
+          if [[ "$BRANCH_NAME" =~ ^v\d+\.\d+\.\d+$ ]]; then
+            echo "Version extracted from branch name: $BRANCH_NAME"
+          else
+            echo "No version found in branch name."
+            exit 1
+          fi
 
 
       - name: Build and Push Image
