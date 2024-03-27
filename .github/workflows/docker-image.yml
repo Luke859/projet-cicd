@@ -15,11 +15,11 @@ jobs:
       matrix:
         include:
           - context: front-end-react
-            image: jonesyluke859/user-service-python
+            image: jonesyluke859/front-react
           - context: order-service
             image: jonesyluke859/order-service-api
           - context: user-service
-            image: jonesyluke859/front-react
+            image: jonesyluke859/user-service-python
 
     steps:
       - name: Checkout repository
