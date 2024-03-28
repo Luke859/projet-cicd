@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: front-end-react
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: front-end-react
+  template:
+    metadata:
+      labels:
+        app: front-end-react
+    spec:
+      containers:
+      - name: front-end-react
+        image: jonesyluke859/front-react:2.0.0
+        ports:
+          - containerPort: 3000
