@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
       - name: front-end-react
-        image: jonesyluke859/front-react:2.0.0
+        image: jonesyluke859/front-end:1.0.0
         ports:
           - containerPort: 3000

@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
       - name: order-service
-        image: jonesyluke859/order-service-api:2.0.0
+        image: jonesyluke859/order-service:1.0.0
         ports:
           - containerPort: 3002

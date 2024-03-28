@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
       - name: user-service
-        image: jonesyluke859/user-service-python:2.0.0
+        image: jonesyluke859/user-service:1.0.0
         ports:
           - containerPort: 3001

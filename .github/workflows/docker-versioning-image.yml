@@ -17,7 +17,7 @@ jobs:
       matrix:
         include:
           - context: front-end-react
-            image: jonesyluke859/front-react
+            image: jonesyluke859/front-end
           - context: order-service
             image: jonesyluke859/order-service
           - context: user-service
