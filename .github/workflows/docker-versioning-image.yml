@@ -1,9 +1,6 @@
 name: Publish Docker image
 
 on:
-  push:
-    branches:
-      - v\d+\.\d+\.\d+
   create:
     branches:
       - v\d+\.\d+\.\d+
@@ -19,11 +16,11 @@ jobs:
       matrix:
         include:
           - context: front-end-react
-            image: guyodokevin/frontend-react-cicd
+            image: jonesyluke859/front-end
           - context: order-service
-            image: guyodokevin/backendorder-node-cicd
+            image: jonesyluke859/order-service
           - context: user-service
-            image: guyodokevin/backenduser-python-cicd
+            image: jonesyluke859/user-service
 
     steps:
       - name: Checkout repository
@@ -41,7 +38,7 @@ jobs:
       - name: Extract version number
         run: |
           # Get version branch value from GITHUB_REF
-          echo "VERSION_BRANCHE=$(echo ${{ github.ref }} | grep -oE '[1-9][0-9]*.[0-9]+.[0-9]+')" >> $GITHUB_ENV
+          echo "VERSION_BRANCHE=$(echo ${{ github.ref }} | sed 's/[^0-9.]*//g'))" >> $GITHUB_ENV
 
       - name: Build and Push Image
         run: |
